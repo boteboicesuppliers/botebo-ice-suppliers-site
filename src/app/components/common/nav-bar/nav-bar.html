@@ -1,0 +1,96 @@
+<nav class="navbar app-navbar px-3 px-md-5">
+  <div class="container-fluid d-flex align-items-center justify-content-between p-0">
+    <!-- Left: Logo + Email -->
+    <div class="d-none d-xl-flex align-items-center gap-4">
+      <a class="d-flex align-items-center gap-2 text-decoration-none text-dark" routerLink="/">
+        <img src="logo.png" alt="Logo" class="navbar-logo" />
+      </a>
+
+      <!-- Separator Divider -->
+      <span class="nav-divider"></span>
+
+      <!-- Email Contact -->
+      <a
+        class="info-link d-inline-flex align-items-center gap-2 text-decoration-none"
+        href="mailto:admin@boteboicesuppliers.co.za"
+      >
+        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="M3 7l9 6 9-6" />
+        </svg>
+        admin@boteboicesuppliers.co.za
+      </a>
+    </div>
+
+    <!-- Mobile/Tablet Logo (shown when desktop left block is hidden) -->
+    <div class="d-xl-none">
+      <a class="d-flex align-items-center gap-2 text-decoration-none text-dark" routerLink="/">
+        <img src="logo.png" alt="Logo" class="navbar-logo" />
+      </a>
+    </div>
+
+    <!-- Center: Navigation links (desktop) -->
+    <div class="d-none d-xl-flex align-items-center gap-4 position-absolute start-50 translate-middle-x">
+      <a class="nav-link-custom" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a class="nav-link-custom" routerLink="/about-us" routerLinkActive="active">About Us</a>
+      <a class="nav-link-custom" routerLink="/products" routerLinkActive="active">Products</a>
+      <a class="nav-link-custom" routerLink="/faqs" routerLinkActive="active">FAQs</a>
+    </div>
+
+    <!-- Right: Action buttons (desktop): Contact Us first, then Order -->
+    <div class="d-none d-xl-flex align-items-center gap-3">
+      <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn-action" routerLink="/contact-us">Contact Us</button>
+      <button type="button" class="btn btn-gradient-outline rounded-pill px-4 btn-action" routerLink="/order">Order</button>
+    </div>
+
+    <!-- Hamburger (mobile / tablet) -->
+    <button
+      type="button"
+      class="hamburger d-xl-none"
+      [class.open]="menuOpen()"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Animated mobile menu -->
+  <div id="mobile-menu" class="mobile-menu d-xl-none" [class.open]="menuOpen()">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-content px-3 px-md-5 py-4 d-flex flex-column gap-3">
+        <!-- Mobile Navigation Links -->
+        <a class="menu-item nav-link-custom" style="--i: 0" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a>
+        <a class="menu-item nav-link-custom" style="--i: 1" routerLink="/about-us" routerLinkActive="active" (click)="closeMenu()">About Us</a>
+        <a class="menu-item nav-link-custom" style="--i: 2" routerLink="/products" routerLinkActive="active" (click)="closeMenu()">Products</a>
+        <a class="menu-item nav-link-custom" style="--i: 3" routerLink="/faqs" routerLinkActive="active" (click)="closeMenu()">FAQs</a>
+
+        <a
+          class="menu-item info-link d-inline-flex align-items-center gap-3 text-decoration-none text-break pt-2"
+          style="--i: 4"
+          href="mailto:admin@boteboicesuppliers.co.za"
+          (click)="closeMenu()"
+        >
+          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+          admin@boteboicesuppliers.co.za
+        </a>
+
+        <div class="menu-item d-flex flex-column flex-sm-row gap-3 pt-2" style="--i: 5">
+          <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn-action flex-sm-fill" routerLink="/contact-us" (click)="closeMenu()">
+            Contact Us
+          </button>
+          <button type="button" class="btn btn-gradient-outline rounded-pill px-4 btn-action flex-sm-fill" routerLink="/order" (click)="closeMenu()">
+            Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,80 @@
+<section class="contact">
+  <!-- fixed image, clipped to this section: looks "pasted behind the page" -->
+  <div class="contact-bg" style="background-image: url('/ice-cubes-sphere-splashing-water.jpg')" aria-hidden="true"></div>
+  <div class="contact-overlay" aria-hidden="true"></div>
+
+  <div class="container contact-container position-relative">
+    <div class="contact-tile anim anim-tile">
+      <div class="contact-intro">
+        <h2 class="anim d1 contact-title">Get in Touch</h2>
+        <p class="anim d2 contact-lead">
+          Tell us what you need and we'll get back to you with a quote and delivery options.
+        </p>
+        <a class="anim d3 contact-mail" href="mailto:admin@boteboicesuppliers.co.za">
+          admin@boteboicesuppliers.co.za
+        </a>
+      </div>
+
+      <div class="anim d2 contact-right">
+        @if (sent()) {
+          <div class="contact-success" role="status">
+            <h3>Thank you!</h3>
+            <p>Your message has been sent. We'll be in touch shortly.</p>
+            <button type="button" class="contact-btn contact-btn-outline" (click)="sendAnother()">
+              Send another message
+            </button>
+          </div>
+        } @else {
+          <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="field">
+              <label for="cf-name">Full name</label>
+              <input id="cf-name" type="text" formControlName="name" autocomplete="name"
+                     [class.is-invalid]="invalid('name')" placeholder="Your name" />
+              @if (invalid('name')) {
+                <small class="error">Please enter your name.</small>
+              }
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input id="cf-email" type="email" formControlName="email" autocomplete="email"
+                       [class.is-invalid]="invalid('email')" placeholder="you@example.com" />
+              @if (invalid('email')) {
+                <small class="error">Please enter a valid email address.</small>
+              }
+              </div>
+
+              <div class="field">
+                <label for="cf-phone">Phone <span class="optional">(optional)</span></label>
+                <input id="cf-phone" type="tel" formControlName="phone" autocomplete="tel"
+                       [class.is-invalid]="invalid('phone')" placeholder="082 000 0000" />
+              @if (invalid('phone')) {
+                <small class="error">Please enter a valid phone number.</small>
+              }
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" rows="4" formControlName="message"
+                        [class.is-invalid]="invalid('message')"
+                        placeholder="Message"></textarea>
+              @if (invalid('message')) {
+                <small class="error">Please enter a message (at least 10 characters).</small>
+              }
+            </div>
+
+            @if (errorMessage()) {
+              <small class="error" role="alert">{{ errorMessage() }}</small>
+            }
+
+            <button type="submit" class="contact-btn" [disabled]="submitting()">
+              {{ submitting() ? 'Sending…' : 'Send Message' }}
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

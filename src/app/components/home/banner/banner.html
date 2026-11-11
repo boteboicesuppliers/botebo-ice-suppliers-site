@@ -1,0 +1,68 @@
+<!-- ============ HERO (Bootstrap 5) ============ -->
+<section class="hero position-relative bg-white">
+  <svg class="position-absolute" style="width:0;height:0" aria-hidden="true">
+    <defs>
+      <!-- brand gradient (purple -> aqua -> blue), left to right: same as navbar line / Order button.
+           Applied per hexagon so each filled shape shows the full gradient. -->
+      <linearGradient id="bannerGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" style="stop-color: var(--grad-purple, #b57bee)" />
+        <stop offset="0.5" style="stop-color: var(--grad-aqua, #6af0e0)" />
+        <stop offset="1" style="stop-color: var(--grad-blue, #2fa8f5)" />
+      </linearGradient>
+      <!-- fallback gradient shown while the photo loads -->
+      <linearGradient id="bannerPhoto" gradientUnits="userSpaceOnUse" x1="1260" y1="40" x2="1760" y2="560">
+        <stop offset="0" stop-color="#cfe3f5" />
+        <stop offset="0.5" stop-color="#1A70B9" />
+        <stop offset="1" stop-color="#024482" />
+      </linearGradient>
+      <!-- ONE image spanning the 7-hex cluster: each hexagon shows its own slice of it -->
+      <pattern id="bannerImg" patternUnits="userSpaceOnUse" x="1240" y="50" width="520" height="500">
+        <rect width="520" height="500" fill="url(#bannerPhoto)" />
+        <image [attr.href]="imageUrl" width="520" height="500" preserveAspectRatio="xMidYMid slice" />
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- honeycomb portion: top-left (now visible on ALL screen sizes, scales with the screen) -->
+  <svg class="hexes hero-left pe-none position-absolute top-0 start-0" viewBox="0 0 560 420" preserveAspectRatio="xMinYMin meet" fill="none">
+    @for (h of heroLeft; track $index) {
+      <polygon [attr.points]="h.p" [attr.class]="h.c" />
+    }
+  </svg>
+
+  <!-- honeycomb portion: right / bottom-right (same grid as the cluster) -->
+  <svg class="hexes pe-none position-absolute top-0 start-0 w-100 h-100 d-none d-xl-block" viewBox="0 0 1900 575" preserveAspectRatio="xMaxYMin slice" fill="none">
+    @for (h of heroBg; track $index) {
+      <polygon [attr.points]="h.p" [attr.class]="h.c" />
+    }
+  </svg>
+
+  <!-- hexagon cluster, desktop (same grid as the background) -->
+  <svg class="cluster anim anim-zoom d2 pe-none position-absolute top-0 start-0 w-100 h-100 d-none d-xl-block" viewBox="0 0 1900 575" preserveAspectRatio="xMaxYMin slice" fill="none">
+    @for (h of heroCluster; track $index) {
+      <polygon [attr.points]="h.p" [attr.class]="h.c" />
+    }
+  </svg>
+
+  <div class="container hero-container position-relative">
+    <div class="hero-content">
+      <h1 class="anim hero-title">Your Trusted Source for Quality Ice Supply</h1>
+      <p class="anim d2 hero-lead">
+        We provide dependable ice supply solutions to a diverse range of customers, with consistent quality, convenient delivery and service tailored to your needs.
+      </p>
+      <a href="#" class="anim d3 btn rounded-pill fw-bold hero-btn">Inquire Now</a>
+    </div>
+
+    <!-- hexagon cluster, mobile / tablet (outline cells now included, same as desktop) -->
+    <svg class="cluster anim anim-zoom d2 hero-cluster-mobile mx-auto w-100 d-xl-none" viewBox="940 0 960 575" fill="none">
+      <g class="hexes">
+        @for (h of heroBg; track $index) {
+          <polygon [attr.points]="h.p" [attr.class]="h.c" />
+        }
+      </g>
+      @for (h of heroCluster; track $index) {
+        <polygon [attr.points]="h.p" [attr.class]="h.c" />
+      }
+    </svg>
+  </div>
+</section>

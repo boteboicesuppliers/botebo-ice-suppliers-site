@@ -1,0 +1,78 @@
+
+<section class="markets-section py-5">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="section-header mb-5">
+      <div>
+
+        <h2 class="section-title">Markets We Serve</h2>
+
+        <p class="section-description mb-0">
+          From individual customers to established businesses, we supply quality
+          ice for a variety of needs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Markets Carousel -->
+    <div class="carousel-wrapper">
+
+      <!-- Previous -->
+      <button
+        class="carousel-btn"
+        (click)="scrollMarkets(-1)"
+        aria-label="Previous markets">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+
+      <!-- Carousel Track -->
+      <div
+        class="markets-carousel"
+        #marketTrack
+        (scroll)="updateScrollProgress()">
+
+        @for (market of markets; track market.name) {
+          <div class="market-slide">
+            <div class="market-tile">
+
+              <div class="market-icon">
+                <i class="bi {{ market.icon }}"></i>
+              </div>
+
+              <h5>{{ market.name }}</h5>
+
+            </div>
+          </div>
+        }
+
+      </div>
+
+      <!-- Next -->
+      <button
+        class="carousel-btn"
+        (click)="scrollMarkets(1)"
+        aria-label="Next markets">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+
+    </div>
+
+    <!-- Carousel Progress Bar -->
+    <div
+      class="carousel-progress"
+      role="progressbar"
+      aria-label="Carousel scroll progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-valuenow]="scrollProgress">
+
+      <div
+        class="carousel-progress-bar"
+        [style.width.%]="scrollProgress">
+      </div>
+
+    </div>
+
+  </div>
+</section>

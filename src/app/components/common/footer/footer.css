@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  --grad-purple: #b57bee;
+  --grad-aqua: #6af0e0;
+  --grad-blue: #2fa8f5;
+  --nav-bg: #f2f2f2;
+  --nav-text: #141526;
+  --nav-muted: #3d3f55;
+}
+
+/* Footer bar + gradient line along the top edge */
+.app-footer {
+  position: relative;
+  background: var(--nav-bg);
+  color: var(--nav-muted);
+  font-weight: 400;
+}
+
+.app-footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--grad-purple) 0%,
+    var(--grad-aqua) 50%,
+    var(--grad-blue) 100%
+  );
+}
+
+.footer-heading {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--nav-text);
+}
+
+.footer-link {
+  color: var(--nav-muted);
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--nav-text);
+}
+
+.footer-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(20, 21, 38, 0.15);
+  font-size: 0.9rem;
+}

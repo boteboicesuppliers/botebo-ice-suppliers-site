@@ -1,0 +1,133 @@
+:host {
+  /* same brand gradient as the navbar line + Order button border */
+  --grad-purple: #b57bee;
+  --grad-aqua: #6af0e0;
+  --grad-blue: #2fa8f5;
+
+  display: block;
+  font-family: 'Gotham', 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ================= LAYOUT (Bootstrap breakpoints: sm 576 / lg 992 / xl 1200) ================= */
+.hero { padding-bottom: 2.5rem; }
+
+.container.hero-container {
+  max-width: 1180px;
+  padding-inline: 1rem;
+}
+
+/* top-left honeycomb: wider on mobile so it sits around the heading like on desktop */
+.hero-left { width: min(560px, 90vw); }
+
+.hero-content {
+  max-width: 520px;
+  padding-top: 2.5rem;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.hero-lead {
+  max-width: 440px;
+  margin: 1.25rem 0 0;
+  font-size: 17px;
+  line-height: 1.45;
+  color: #333;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  margin-top: 1.75rem;
+  padding: 0 3rem;
+  border: 0;
+  background-color: #024482;
+  color: #fff;
+  font-size: 17px;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+.hero-btn:hover,
+.hero-btn:focus-visible {
+  background-color: #013366;
+  color: #fff;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+.hero-btn:active { transform: translateY(0) scale(0.98); }
+
+.hero-cluster-mobile {
+  display: block;
+  max-width: 520px;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 576px) {
+  .container.hero-container { padding-inline: 1.5rem; }
+  .hero-content { padding-top: 3.5rem; }
+  .hero-title { font-size: 64px; }
+  .hero-left { width: min(560px, 40vw); }
+}
+
+@media (min-width: 992px) {
+  .hero-content { padding-top: 84px; }
+  .hero-title { font-size: 84px; line-height: 0.87; }
+  .hero-lead { font-size: 18px; }
+}
+
+@media (min-width: 1200px) {
+  .hero { min-height: 570px; padding-bottom: 0; }
+}
+
+/* ================= SCROLL REVEAL ================= */
+.anim { opacity: 0; }
+.anim.anim-in { opacity: 1; animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.anim-zoom.anim-in { animation-name: zoomIn; }
+
+.d1.anim-in { animation-delay: 0.10s; }
+.d2.anim-in { animation-delay: 0.20s; }
+.d3.anim-in { animation-delay: 0.30s; }
+
+@keyframes rise    { from { opacity: 0; transform: translateY(36px); } }
+@keyframes zoomIn  { from { opacity: 0; transform: scale(0.92); } }
+@keyframes fadeIn  { from { opacity: 0; } }
+@keyframes shimmer { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+/* ================= HONEYCOMB ================= */
+.hexes { animation: fadeIn 1.4s ease both; }
+.hexes polygon { vector-effect: non-scaling-stroke; }
+.hex-line { fill: none; stroke: #cfe0f0; stroke-width: 3; }
+.hex-pink { fill: none; stroke: url(#bannerGrad); stroke-width: 4; }
+
+/* a few outline cells gently shimmer, out of phase */
+.hexes polygon:nth-child(7n + 2)  { animation: shimmer 6s ease-in-out infinite; }
+.hexes polygon:nth-child(9n + 5)  { animation: shimmer 8s ease-in-out 2s infinite; }
+.hexes polygon:nth-child(11n + 7) { animation: shimmer 7s ease-in-out 4s infinite; }
+
+/* filled hexagon cluster */
+.cluster polygon {
+  pointer-events: auto;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+.cluster polygon:hover { transform: scale(1.07); }
+
+.hex-photo    { fill: url(#bannerImg); stroke: #fff; stroke-width: 5; }
+.hex-navy     { fill: url(#bannerGrad); stroke: #fff; stroke-width: 5; }
+.hex-grey     { fill: url(#bannerGrad); stroke: #fff; stroke-width: 5; }
+.hex-pinkfill { fill: #fff; stroke: url(#bannerGrad); stroke-width: 5; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim { opacity: 1; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
