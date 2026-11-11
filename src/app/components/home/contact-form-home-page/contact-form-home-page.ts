@@ -38,7 +38,7 @@ export class ContactFormHomePage implements AfterViewInit {
     this.errorMessage.set(null);
 
     try {
-      const response = await fetch('https://formspree.io/f/xvkaoaya', {
+      const response = await fetch('https://formspree.io/f/maeoyjol', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
